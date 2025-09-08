@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from "react-router-dom"
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -8,7 +9,7 @@ function App() {
 
   return (
     <>
-      <div>
+      <div className="flex justify-center items-center gap-4">
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
@@ -21,6 +22,11 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
+        <Link to="/template">
+          <button style={{ marginLeft: "1rem" }}>
+            Go to Template Page
+          </button>
+        </Link>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
