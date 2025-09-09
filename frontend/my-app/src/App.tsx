@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from "react-router-dom"
+import { Button } from "@/components/ui/button"
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -19,13 +20,13 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+        <Button onClick={() => setCount((count) => count + 1)}>
           count is {count}
-        </button>
+        </Button>
         <Link to="/template">
-          <button style={{ marginLeft: "1rem" }}>
+          <Button style={{ marginLeft: "1rem" }}>
             Go to Template Page
-          </button>
+          </Button>
         </Link>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
