@@ -7,3 +7,4 @@ alembic
 langchain
 langgraph
 pgvector
+pgai
