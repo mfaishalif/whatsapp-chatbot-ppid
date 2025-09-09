@@ -1,0 +1,9 @@
+fastapi[standard]
+uvicorn[standard]
+python-dotenv
+sqlmodel
+psycopg2-binary
+alembic
+langchain
+langgraph
+pgvector
