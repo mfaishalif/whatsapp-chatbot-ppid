@@ -1,8 +1,6 @@
-
-
 services:
   db:
-    image: pgvector/pgvector:pg16
+    image: pgvector/pgvector:pg17-trixie
     ports:
       - "5432:5432"
     environment:
@@ -23,9 +21,13 @@ services:
     environment:
       - OLLAMA_HOST=http://ollama:11434
       - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+      # Added vectorizer URL so your backend can find it
+      - VECTORIZER_URL=http://vectorizer:7860/vectors
     depends_on:
       - ollama
       - db
+      # Make sure backend waits for the vectorizer to start
+      - vectorizer
     networks:
       - chatbot_net
 
@@ -46,6 +48,14 @@ services:
       - "11434:11434"
     volumes:
       - ollama_data:/root/.ollama
+    networks:
+      - chatbot_net
+  
+  # New vectorizer service
+  vectorizer:
+    image: timescale/pgai-vectorizer-worker:latest
+    ports:
+      - "7860:7860"
     networks:
       - chatbot_net
 
