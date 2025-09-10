@@ -102,10 +102,10 @@ export default function KelolaInformasi() {
           </TableHead>
 
           {/* Right-aligned plain headers */}
-          <TableHead className="w-48 px-2 py-2 text-right text-neutral-900 text-sm font-medium leading-tight tracking-tight">
+          <TableHead className="w-48 px-2 py-2 text-left text-neutral-900 text-sm font-medium leading-tight tracking-tight">
             Table heading
           </TableHead>
-          <TableHead className="w-48 px-2 py-2 text-right text-neutral-900 text-sm font-medium leading-tight tracking-tight">
+          <TableHead className="w-48 px-2 py-2 text-left text-neutral-900 text-sm font-medium leading-tight tracking-tight">
             Table heading
           </TableHead>
           <TableHead className="w-32 px-2 py-2"></TableHead>
