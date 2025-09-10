@@ -11,7 +11,11 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <BrowserRouter>
       <Routes>
         {/* All other routes use Navbar layout */}
-        <Route path="/*" element={<Navbar />} />
+        <Route path="/*" element={
+          <div className="centered-navbar">
+            <Navbar />
+          </div>
+        } />
 
         {/* Template page uses sidebar layout */}
         <Route element={<Sidebar />}>

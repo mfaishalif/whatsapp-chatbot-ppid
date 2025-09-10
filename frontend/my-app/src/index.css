@@ -138,7 +138,11 @@
     @apply bg-background text-foreground;
   }
 }
-#root {
-  padding: 0 !important;
-  margin: 0 !important;
+
+.centered-navbar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
