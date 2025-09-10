@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import App from '../App'
-import About from '../pages/About'
+import About from '../About'
 
 import { Link } from "react-router-dom"
 import {

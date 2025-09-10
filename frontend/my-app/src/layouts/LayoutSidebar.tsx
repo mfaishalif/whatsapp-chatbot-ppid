@@ -1,10 +1,30 @@
-import { Outlet } from "react-router-dom"
+import { Outlet, useLocation } from "react-router-dom"
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/app-sidebar"
 import { Separator } from "@/components/ui/separator"
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb"
+import { getSidebarData } from "@/lib/sidebarData"
+
+function getBreadcrumb(pathname: string) {
+  const sidebarData = getSidebarData(pathname)
+  if (pathname === "/" || pathname === "#") {
+    return { parent: undefined, current: "Beranda" }
+  }
+  for (const group of sidebarData.navMain) {
+    for (const item of group.items) {
+      if (item.url === pathname) {
+        return { parent: group.title, current: item.title }
+      }
+    }
+  }
+  return { parent: undefined, current: "Halaman" }
+}
 
 export default function Sidebar() {
+  const location = useLocation()
+  const { pathname } = location
+  const breadcrumb = getBreadcrumb(pathname)
+
   return (
     <SidebarProvider>
       <div className="min-h-screen flex w-screen">
@@ -17,14 +37,16 @@ export default function Sidebar() {
             <Separator orientation="vertical" className="h-4" />
             <Breadcrumb>
               <BreadcrumbList>
-                <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="#">
-                    Manajemen Informasi Publik
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator className="hidden md:block" />
+                {breadcrumb.parent && (
+                  <>
+                    <BreadcrumbItem className="hidden md:block">
+                      <BreadcrumbLink href="#">{breadcrumb.parent}</BreadcrumbLink>
+                    </BreadcrumbItem>
+                    <BreadcrumbSeparator className="hidden md:block" />
+                  </>
+                )}
                 <BreadcrumbItem>
-                  <BreadcrumbPage>Kelola Informasi</BreadcrumbPage>
+                  <BreadcrumbPage>{breadcrumb.current}</BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>

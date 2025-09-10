@@ -5,6 +5,7 @@ import Navbar from "./layouts/LayoutNavbar" // old layout with navbar
 import Sidebar from "./layouts/LayoutSidebar" // new layout with sidebar
 import KelolaInformasi from "./pages/KelolaInformasi"
 import "./index.css"
+import AntrianPermohonan from "./pages/AntrianPermohonan"
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -17,9 +18,10 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           </div>
         } />
 
-        {/* Template page uses sidebar layout */}
+        {/* All routes in pages directory uses sidebar layout */}
         <Route element={<Sidebar />}>
           <Route path="/KelolaInformasi" element={<KelolaInformasi />} />
+          <Route path="/AntrianPermohonan" element={<AntrianPermohonan />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -1,4 +1,7 @@
-import { ChevronRight, FileText, FolderOpen, Home } from "lucide-react"
+import { ChevronRight, Home, FileText, FolderOpen } from "lucide-react"
+import { useLocation } from "react-router-dom"
+import { getSidebarData } from "@/lib/sidebarData"
+import React from "react"
 
 import {
   Sidebar,
@@ -17,31 +20,15 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible"
 
-// Collapsible items
-const data = {
-  navMain: [
-    {
-      title: "Manajemen Permohonan Informasi",
-      url: "#",
-      icon: FolderOpen,
-      items: [
-        { title: "Antrian Permohonan", url: "#" },
-        { title: "History Permohonan", url: "#" },
-      ],
-    },
-    {
-      title: "Manajemen Informasi Publik",
-      url: "#",
-      icon: FileText,
-      items: [
-        { title: "Kelola Informasi", url: "#", isActive: true },
-        { title: "Tambahkan Informasi", url: "#" },
-      ],
-    },
-  ],
+const icons: Record<string, React.ElementType> = {
+  FileText,
+  FolderOpen,
 }
 
 export function AppSidebar() {
+  const location = useLocation()
+  const { pathname } = location
+  const data = getSidebarData(pathname)
   return (
     <Sidebar className="flex px-4 flex-col items-start shrink-0 border-r bg-neutral-50">
       {/* User Mini Profile Components */}
@@ -62,9 +49,9 @@ export function AppSidebar() {
       </div>
 
       {/* Sidebar Contents */}
-      <SidebarContent className="pl-1">
+      <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel className="self-stretch px-3 py-1.5 rounded-sm inline-flex justify-start items-center gap-2 text-black text-lg">
+          <SidebarGroupLabel className="self-stretch px-2 py-1.5 rounded-sm inline-flex justify-start items-center gap-2 text-black text-lg">
             Dashboard
           </SidebarGroupLabel>
           <SidebarGroupContent>
@@ -92,11 +79,11 @@ export function AppSidebar() {
                       <SidebarMenuButton
                         className="flex items-start gap-2 text-left whitespace-normal w-full h-auto"
                       >
-                        <group.icon className="w-4 h-4 flex-shrink-0 self-center" />
+                        {icons[group.icon] && React.createElement(icons[group.icon], { className: "w-4 h-4 flex-shrink-0 self-center" })}
                         <span className="flex-1 whitespace-normal break-words leading-snug">
                           {group.title}
                         </span>
-                        <ChevronRight className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90" />
+                        <ChevronRight className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90 self-center" />
                       </SidebarMenuButton>
                     </CollapsibleTrigger>
 
