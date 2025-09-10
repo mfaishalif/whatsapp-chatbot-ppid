@@ -23,9 +23,9 @@ function App() {
         <Button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </Button>
-        <Link to="/template">
+        <Link to="/KelolaInformasi">
           <Button style={{ marginLeft: "1rem" }}>
-            Go to Template Page
+            Go to Kelola Informasi Page
           </Button>
         </Link>
         <p>
